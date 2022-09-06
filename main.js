@@ -1,47 +1,60 @@
-const playerScore = 0;
-const computerScore = 0;
-const roundWinner = "";
-
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection === computerSelection) {
-    roundWinner = "tie";
-  }
-}
+const choices = ["rock", "paper", "scissors"];
 
 // Game
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection === computerSelection){
-    return `It's a tie! you both picked ${playerSelection}`;
-  } else if (playerSelection === "rock" && computerSelection === "scissors") {
-    return "You Win! Rock beats Scissors";
-  } else if (playerSelection === "paper" && computerSelection === "rock") {
-    return "You Win! Paper beats Rock";
-  } else if (playerSelection === "scissors" && computerSelection === "paper") {
-    return "You Win! Scissors beats Paper";
-  }
-   else {
-    return `You lose! ${computerSelection} beats ${playerSelection}`;
+function game() {
+  for (let i = 0; i < 5; i++) {
+    playRound();
   }
 }
 
-const playerSelection = prompt("Start the game by picking among 'Rock, Paper, Scissors'").toLowerCase();
-const computerSelection = computerTurn();
-console.log(playRound(playerSelection, computerSelection))
+// Plays rounds vs Computer
+function playRound() {
+  const playerSelection = playerChoice();
+  const computerSelection = computerChoice();
+  console.log(computerSelection);
+  const winner = declaresWinner(playerSelection, computerSelection);
+  console.log(winner);
+}
+
+// Gets input from Player / User
+function playerChoice() {
+  let input = prompt("Start the game by picking among 'Rock, Paper, Scissors'");
+  input = input.toLowerCase();
+  let check = validateInput(input);
+  while (check == false) {
+    input = prompt(
+      "Type Rock, Paper, Scissors. Capitalization does not matter."
+    );
+    input = input.toLowerCase();
+    check = validateInput(input);
+  }
+  return input;
+}
 
 // Computer selection
-function computerTurn() {
-  const randomNumber = Math.floor(Math.random() * 3) + 1; //Randomizes computer selection from 1 to 3
-  switch (randomNumber) {
-    case 0:
-      return "ROCK";
-    case 1:
-      return "PAPER";
-    case 2:
-      return "Scissors";
+function computerChoice() {
+  return choices[Math.floor(Math.random() * choices.length)]; //Randomizes computer selection from the variable named choices
+}
+
+function validateInput(choice) {
+  if (choices.includes(choice)) {
+    return true;
+  }
+  return false;
+}
+
+function declaresWinner(playerChoice, computerChoice) {
+  if (playerChoice === computerChoice) {
+    return "Tie";
+  } else if (
+    (playerChoice === "rock" && computerChoice === "scissors") ||
+    (playerChoice === "paper" && computerChoice === "rock") ||
+    (playerChoice === "scissors" && computerChoice === "paper")
+  ) {
+    return "Player won";
+  } else {
+    return "Computer Won";
   }
 }
 
-// Declares winner of the match
-function gameOver() {
-  return playerScore === 5 || computerScore === 5;
-}
+game();
