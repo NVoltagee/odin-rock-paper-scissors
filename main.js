@@ -11,7 +11,6 @@ function game() {
 function playRound() {
   const playerSelection = playerChoice();
   const computerSelection = computerChoice();
-  console.log(computerSelection);
   const winner = declaresWinner(playerSelection, computerSelection);
   console.log(winner);
 }
