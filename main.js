@@ -53,9 +53,9 @@ function declaresWinner(playerChoice, computerChoice) {
     (playerChoice === "paper" && computerChoice === "rock") ||
     (playerChoice === "scissors" && computerChoice === "paper")
   ) {
-    return "Player won";
+    return "Player";
   } else {
-    return "Computer Won";
+    return "Computer";
   }
 }
 
