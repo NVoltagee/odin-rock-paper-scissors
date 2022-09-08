@@ -53,9 +53,9 @@ function declaresWinner(playerChoice, computerChoice) {
     (playerChoice === "paper" && computerChoice === "rock") ||
     (playerChoice === "scissors" && computerChoice === "paper")
   ) {
-    return "Player";
+    return "Player won";
   } else {
-    return "Computer";
+    return "Computer won";
   }
 }
 
@@ -73,7 +73,7 @@ function logRound(playerChoice, computerChoice, winner, round) {
   console.log("Round:", round);
   console.log("Player Chose:", playerChoice);
   console.log("Computer Chose:", computerChoice);
-  console.log(winner, "won the Round");
+  console.log(winner, "the Round");
   console.log("-------------------------------");
 }
 
