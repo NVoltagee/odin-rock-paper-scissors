@@ -77,4 +77,4 @@ function logRound(playerChoice, computerChoice, winner, round) {
   console.log("-------------------------------");
 }
 
-game();
+// game();
