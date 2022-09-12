@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="https://res.cloudinary.com/daki9bhap/image/upload/v1660672096/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Odin Rock Paper Scissors</title>
-    <script src="main.js"></script>
-</head>
-<body>
-    
-</body>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="title">GRASS FIRE WATER</h1>
+    </header>
+    <main class="main">
+      <div class="scoreboard">
+        <h2 class="score-info" id="scoreInfo">Choose your Type</h2>
+        <h3 class="score-message" id="scoreMessage">
+          First to score 5 points wins the game
+        </h3>
+        <div class="scores-container">
+          <div class="score-box">
+            <div class="sign" id="playerSign">❔</div>
+            <p class="score" id="playerScore">Player: 0</p>
+          </div>
+          <div class="score-box">
+            <div class="sign" id="computerSign">❔</div>
+            <p class="score" id="computerScore">Computer: 0</p>
+          </div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="btn btn-circle" id="grassBtn">
+          <img class="sign" src="" alt="" />
+          
+        </button>
+        <p class="type">Grass</p>
+        <button class="btn btn-circle" id="fireBtn">
+          <img class="sign" src="" alt="" />
+        </button>
+        <p class="type">Fire</p>
+        <button class="btn btn-circle" id="waterBtn">
+          <img class="sign" src="" alt="" />
+        </button>
+        <p class="type">Water</p>
+      </div>
+    </main>
+  </body>
 </html>

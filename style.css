@@ -1,0 +1,112 @@
+:root {
+    --primary-light: #ddd;
+    --primary-dark: #000;
+    --secondary-dark-hover: #4a4f57;
+    --secondary-dark-active: #5b5f68;
+  }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: var(--primary-light);
+  background-color: #616161;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+}
+
+button {
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    outline: none;
+  }
+
+/* Header */
+.header {
+  display: flex;
+  padding: 40px 0;
+  justify-content: center;
+  background-color: #313131;
+}
+
+.title {
+  font-size: 2.000em;
+  color: #ed3b3a;
+  font-family: "Press Start 2P", cursive;
+}
+/* Main */
+.main {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.scoreboard {
+  margin-bottom: 15px;
+}
+
+.score-info {
+  font-size: 2.000em;
+}
+
+.score-message {
+  font-size: 1.250em;
+  margin-bottom: 15px;
+}
+
+.scores-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 400px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.score-box {
+  width: 170px;
+}
+
+.score {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 1.375em;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.btn {
+  border-radius: 100px;
+  background-color: var(--secondary-dark);
+}
+
+.btn-circle {
+  width: 200px;
+  height: 200px;
+}
+
+.btn:hover {
+  background-color: var(--secondary-dark-hover);
+}
+
+.btn:active {
+  background-color: var(--secondary-dark-active);
+}
+
+.sign {
+  font-size: 80px;
+  margin-bottom: 10px;
+}
