@@ -1,6 +1,8 @@
 :root {
     --primary-light: #ddd;
     --primary-dark: #000;
+    --secondary-light-hover: #;
+    --secondary-light-active:#;
     --secondary-dark-hover: #4a4f57;
     --secondary-dark-active: #5b5f68;
   }
