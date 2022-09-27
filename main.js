@@ -10,7 +10,7 @@ const scoreboard = {
 
 // Play game
 function play(e) {
-  restart.style.display = 'inline-block';
+  // restart.style.display = 'inline-block';
   const playerChoice = e.target.id;
   const computerChoice = getComputerChoice();
   const winner = getWinner(playerChoice, computerChoice);
@@ -104,17 +104,18 @@ function restartGame() {
   restart.style.display = 'none';
 }
 
+// Play game until someone reaches 5 wins
+
+function gameOver() {
+  restart.style.display = 'inline-block';
+  return scoreboard.player === 5 || scoreboard.computer === 5
+}
+
 // Clear modal
 function clearModal(e) {
   if (e.target == modal) {
     modal.style.display = 'none';
   }
-}
-
-// Play game until someone reaches 5 wins
-
-function gameOver() {
-  return scoreboard.player === 5 || scoreboard.computer === 5
 }
 
 // Event listeners
