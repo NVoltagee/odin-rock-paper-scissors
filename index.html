@@ -9,43 +9,38 @@
       href="https://res.cloudinary.com/daki9bhap/image/upload/v1660672096/favicon.ico"
       type="image/x-icon"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <title>Odin Rock Paper Scissors</title>
     <script src="main.js" defer></script>
   </head>
   <body>
-    <header class="header">
-      <h1 class="title">GRASS FIRE WATER</h1>
-    </header>
-    <main class="main">
-      <div class="scoreboard">
-        <h2 class="score-info" id="scoreInfo">Choose your Type</h2>
-        <h3 class="score-message" id="scoreMessage">
-          First to score 5 points wins the game
-        </h3>
-        <button class="reset" onclick="resetGame()">Play Again?</button>
-        <div class="scores-container">
-          <div class="score-box">
-            <div class="sign" id="playerSign">❔</div>
-            <p class="score" id="playerScore">Player: 0</p>
-          </div>
-          <div class="score-box">
-            <div class="sign" id="computerSign">❔</div>
-            <p class="score" id="computerScore">Computer: 0</p>
-          </div>
+    <div class="container">
+      <header class="header">
+        <h1>Rock Paper Scissors</h1>
+        <button id="restart" class="restart-btn">Restart Game</button>
+        <div id="score" class="score">
+          <p>Player: 0</p>
+          <p>Computer: 0</p>
         </div>
+      </header>
+      <h2>Make Your Selection</h2>
+      <div class="choices">
+        <button class="btn btn-circle choice" >
+          <img class="sign" id="grass" src="img/grass.png" alt="grass" />
+        </button>
+        <button class="btn btn-circle choice" >
+          <img class="sign" id="fire"src="img/fire.png" alt="fire" />
+        </button>
+        <button class="btn btn-circle choice" >
+          <img class="sign" id="water" src="img/water.png" alt="water" />
+        </button>
       </div>
-      <div class="buttons">
-        <button class="btn btn-circle" id="grassBtn">
-          <img class="sign" src="img/grass.png" alt="grass" />
-        </button>
-        <button class="btn btn-circle" id="fireBtn">
-          <img class="sign" src="img/fire.png" alt="fire" />
-        </button>
-        <button class="btn btn-circle" id="waterBtn">
-          <img class="sign" src="img/water.png" alt="water" />
-        </button>
-      </div>
-    </main>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal">
+      <div id="result" class="modal-content"></div>
+    </div>
   </body>
 </html>
