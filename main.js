@@ -1,128 +1,123 @@
-const choices = ["grass", "fire", "water"];
-let winners = [];
+const choices = document.querySelectorAll('.choice');
+const score = document.getElementById('score');
+const result = document.getElementById('result');
+const restart = document.getElementById('restart');
+const modal = document.querySelector('.modal');
+const scoreboard = {
+  player: 0,
+  computer: 0
+};
 
-//Resets game back to 0 
-function resetGame() {
-  winners = [];
-  document.getElementById("playerScore").textContent = "Score: 0";
-  document.getElementById("computerScore").textContent = "Score: 0";
-  document.querySelector(".winner").textContent = "";
-  document.querySelector(".playerChoice").textContent = "";
-  document.querySelector(".computerChoice").textContent = "";
-  document.querySelector(".reset").style.display = "none";
-}
-// Game
-function game() {
-  const imgs = document.querySelectorAll("img");
-  imgs.forEach((img) =>
-    img.addEventListener("click", () => {
-      if (img.id) {
-        playRound(img.id);
-      }
-    })
-  );
+// Play game
+function play(e) {
+  restart.style.display = 'inline-block';
+  const playerChoice = e.target.id;
+  const computerChoice = getComputerChoice();
+  const winner = getWinner(playerChoice, computerChoice);
+  showWinner(winner, computerChoice);
+  gameOver()
 }
 
-// Plays rounds vs Computer
-function playRound(playerChoice) {
-  let wins = checkWins();
-  if (wins >= 5) {
-    return;
-  }
-  const computerSelection = computerChoice();
-  const winner = declaresWinner(playerSelection, computerSelection);
-  winners.push(winner);
-  winCounter();
-  displayRound(playerChoice, computerChoice, winner);
-  wins = checkWins();
-  if (wins === 5) {
-    displayEnd
-  }
-}
-
-function displayEnd(){
-  let playerWins = winners.filter((item) => item == "Player").length;
-
-  if (playerWins === 5) {
-    document.querySelector(".winner").textContent =
-      "You Won 5 Games, Congrats!";
+// Get computers choice
+function getComputerChoice() {
+  const rand = Math.random();
+  if (rand < 0.34) {
+    return 'grass';
+  } else if (rand <= 0.67) {
+    return 'fire';
   } else {
-    document.querySelector(".winner").textContent =
-      "Sorry, the computer won 5 times";
+    return 'water';
   }
-  document.querySelector(".reset").style.display = "flex";
 }
 
-function displayRound(playerChoice, computerChoice, winner) {
-  document.getElementById("playerSign").textContent = `You Chose: ${
-    playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)
-  }`;
-  document.getElementById(
-    "computerSign"
-  ).textContent = `The Computer Chose: ${
-    computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)
-  }`;
-  displayRoundWinner(winner);
+// Get game winner
+function getWinner(p, c) {
+  if (p === c) {
+    return 'draw';
+  } else if (p === 'grass') {
+    if (c === 'fire') {
+      return 'computer';
+    } else {
+      return 'player';
+    }
+  } else if (p === 'fire') {
+    if (c === 'water') {
+      return 'computer';
+    } else {
+      return 'player';
+    }
+  } else if (p === 'water') {
+    if (c === 'grass') {
+      return 'computer';
+    } else {
+      return 'player';
+    }
+  }
 }
 
-function displayRoundWinner(winner) {
-  if (winner == "Player") {
-    document.querySelector(".winner").textContent = "You won the Round!";
-  } else if (winner == "Computer") {
-    document.querySelector(".winner").textContent =
-      "The Computer won the Round";
+function showWinner(winner, computerChoice) {
+  if (winner === 'player') {
+    // Inc player score
+    scoreboard.player++;
+    // Show modal result
+    result.innerHTML = `
+      <h1 class="text-win">You Win</h1>
+      <img class="sign" id="${computerChoice}" src="img/${computerChoice}.png" alt="${computerChoice}" />
+      <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() +
+        computerChoice.slice(1)}</strong></p>
+    `;
+  } else if (winner === 'computer') {
+    // Inc computer score
+    scoreboard.computer++;
+    // Show modal result
+    result.innerHTML = `
+      <h1 class="text-lose">You Lose</h1>
+      <img class="sign" id="${computerChoice}" src="img/${computerChoice}.png" alt="${computerChoice}" />
+      <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() +
+        computerChoice.slice(1)}</strong></p>
+    `;
   } else {
-    document.querySelector(".winner").textContent = "The Round was a tie";
+    result.innerHTML = `
+      <h1>It's A Draw</h1>
+      <img class="sign" id="${computerChoice}" src="img/${computerChoice}.png" alt="${computerChoice}" />
+      <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() +
+        computerChoice.slice(1)}</strong></p>
+    `;
+  }
+  // Show score
+  score.innerHTML = `
+    <p>Player: ${scoreboard.player}</p>
+    <p>Computer: ${scoreboard.computer}</p>
+    `;
+
+  modal.style.display = 'block';
+}
+
+// Restart game
+function restartGame() {
+  scoreboard.player = 0;
+  scoreboard.computer = 0;
+  score.innerHTML = `
+    <p>Player: 0</p>
+    <p>Computer: 0</p>
+  `;
+  restart.style.display = 'none';
+}
+
+// Clear modal
+function clearModal(e) {
+  if (e.target == modal) {
+    modal.style.display = 'none';
   }
 }
 
-// Counts number of wins of player and computer
-function winCounter(){
-  const playerWin = winners.filter((item) => item == "Player").length;
-  const computerWin = winners.filter((item) => item == "Computer").length;
-  const ties = winners.filter((item) => item == "Tie").length;
-  document.getElementById("playerScore").textContent = `Score: ${playerWin}`;
-  document.getElementById("computerScore").textContent = `Score: ${computerWin}`;
-  document.querySelector(".ties").textContent = `Ties: ${ties}`;
+// Play game until someone reaches 5 wins
+
+function gameOver() {
+  return scoreboard [player] === 5 || scoreboard[computer] === 5
 }
 
-//Randomizes computer selection from the variable named choices
-function computerChoice() {
-  const choice = choices[Math.floor(Math.random() * choices.length)];
-
-  document.querySelector(`.${choice}`).classList.add("active");
-
-  setTimeout(() => {
-    document.querySelector(`.${choice}`).classList.remove("active");
-  }, 700);
-
-  return choice;
-}
-
-// Check wins
-function checkWins() {
-  let playerWin = winners.filter((item) => item == "Player won").length;
-  let computerWin = winners.filter((item) => item == "Computer won").length;
-  return Math.max(playerWin, computerWin);
-}
-
-function declaresWinner(playerChoice, computerChoice) {
-  if (playerChoice === computerChoice) {
-    return "Tie";
-  } else if (
-    (playerChoice === "grass" && computerChoice === "water") ||
-    (playerChoice === "fire" && computerChoice === "grass") ||
-    (playerChoice === "water" && computerChoice === "fire")
-  ) {
-    return "Player won";
-  } else {
-    return "Computer won";
-  }
-}
-
-function setWins() {
-  const playerWin = winners.filter((item) => item == "Player").length;
-  const computerWin = winners.filter((item) => item == "Computer").length;
-  const ties = winners.filter((item) => item == "Tie").length;
-}
-game();
+// Event listeners
+choices.forEach(choice => choice.addEventListener('click', play));
+window.addEventListener('click', clearModal);
+restart.addEventListener('click', restartGame);
