@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 :root {
-  --primary-color: #F2CF45;
+  --primary-color: #FF1F2E;
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --lose-color: #dc3545;
@@ -19,7 +19,7 @@ body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
   background: #000;
-  color: #FF1F2E;
+  color: #F2CF45;
 }
 
 .container {
