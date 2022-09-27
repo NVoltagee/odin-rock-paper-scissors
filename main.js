@@ -114,7 +114,7 @@ function clearModal(e) {
 // Play game until someone reaches 5 wins
 
 function gameOver() {
-  return scoreboard [player] === 5 || scoreboard[computer] === 5
+  return scoreboard.player === 5 || scoreboard.computer === 5
 }
 
 // Event listeners
