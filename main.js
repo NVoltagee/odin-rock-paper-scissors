@@ -10,12 +10,15 @@ const scoreboard = {
 
 // Play game
 function play(e) {
-  // restart.style.display = 'inline-block';
-  const playerChoice = e.target.id;
-  const computerChoice = getComputerChoice();
-  const winner = getWinner(playerChoice, computerChoice);
-  showWinner(winner, computerChoice);
-  gameOver()
+  restart.style.display = 'inline-block';
+  if(scoreboard.player < 5 && scoreboard.computer < 5){
+    const playerChoice = e.target.id;
+    const computerChoice = getComputerChoice();
+    const winner = getWinner(playerChoice, computerChoice);
+    showWinner(winner, computerChoice);
+  } else{
+    endGame();
+  }
 }
 
 // Get computers choice
@@ -104,10 +107,12 @@ function restartGame() {
 }
 
 // Play game until someone reaches 5 wins
-
-function gameOver() {
-  restart.style.display = 'inline-block';
-  return scoreboard.player === 5 || scoreboard.computer === 5
+function endGame() {
+  if (scoreboard.player > scoreboard.computer) {
+      alert("Game Over! You Win! :)");
+  } else if (scoreboard.computer > scoreboard.player) {
+      alert("Game Over! You Lost! :(");
+  }
 }
 
 // Clear modal
